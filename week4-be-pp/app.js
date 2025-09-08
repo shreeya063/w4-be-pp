@@ -1,16 +1,23 @@
+const auth = require('./middleware/auth');
+
 const express = require('express');
 const app = express();
 const tourRouter = require('./routes/tourRouter');
 const userRouter = require('./routes/userRouter');
+const morgan = require('morgan');
+app.use(morgan('tiny'));
 
+app.use(auth);
 // Middleware to parse JSON
 app.use(express.json());
 
+//app.use('/api', auth)
+
 // Use the tourRouter for all /tours routes
-app.use('/tours', tourRouter);
+app.use('/api/tours', tourRouter);
 
 // Use the tourRouter for all /users routes
-app.use('/users', userRouter);
+app.use('/api/users', userRouter);
 
 const port = 4000;
 // Start the server
