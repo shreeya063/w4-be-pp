@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const auth = require('../middleware/auth');
-router.use(auth);
+
 
 const {
   getAllUsers,
@@ -15,14 +15,17 @@ const {
 router.use(express.json());
 
 // ROUTES
+
 // GET /users
 router.get("/", getAllUsers);
 
-// POST /users
-router.post("/", createUser);
-
 // GET /users/:userId
 router.get("/:userId", getUserById);
+
+router.use(auth);
+
+// POST /users
+router.post("/", createUser);
 
 // PUT /users/:userId
 router.put("/:userId", updateUser);

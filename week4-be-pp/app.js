@@ -7,7 +7,7 @@ const userRouter = require('./routes/userRouter');
 const morgan = require('morgan');
 app.use(morgan('tiny'));
 
-app.use(auth);
+
 // Middleware to parse JSON
 app.use(express.json());
 
